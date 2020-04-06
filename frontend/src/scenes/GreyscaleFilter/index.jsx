@@ -12,9 +12,13 @@ class Filter extends Component {
       this.setState({uploadedFile: URL.createObjectURL(files[0])});
       const formData = new FormData();
       formData.append("file", files[0]);
+      let url = "http://34.217.27.245:8080/rest/image";
+      if (process.env.NODE_ENV === 'development') {
+        url = "http://localhost:8080/rest/image";
+      }
       const options = {
         method: 'post',
-        url: 'http://localhost:8080/rest/image',
+        url: url,
         data: formData,
         body: files[0],
         headers: {
